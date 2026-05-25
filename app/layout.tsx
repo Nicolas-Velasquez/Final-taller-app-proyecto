@@ -1,13 +1,16 @@
 import { Stack } from "expo-router";
+import { useEffect } from "react";
 import { Appearance } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function Layout() {
-  Appearance.setColorScheme('light'); // fuera del useEffect, se ejecuta en cada render
+  useEffect(() => {
+    Appearance.setColorScheme("light");
+  }, []);
 
   return (
-    <Stack screenOptions={{ 
-      headerShown: false,
-      contentStyle: { backgroundColor: 'white' }
-    }} />
+    <SafeAreaProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </SafeAreaProvider>
   );
 }

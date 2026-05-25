@@ -125,10 +125,11 @@ const Onboarding: React.FC<OnboardingProps> = ({ onFinish }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     flex: 1,
+    backgroundColor: '#000',  // ← cambia esto
   },
-  screenWrapper: {
+  screenWrapper: { 
     ...StyleSheet.absoluteFillObject,
   },
 });

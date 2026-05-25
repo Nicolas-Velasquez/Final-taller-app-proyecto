@@ -40,15 +40,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ username }) => {
   const [category, setCategory] = useState('Alimentación');
   const tip = TIPS[new Date().getDay() % TIPS.length];
 
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(() => {
+  const fetchData = async () => {
     setLoading(true);
     const [t, b] = await Promise.all([getTransactions(), getBudgets()]);
     setTransactions(t);
     setBudgets(b);
     setLoading(false);
-  }, []);
-
-  useFocusEffect(loadData);
+  };
+  fetchData();
+}, []);
 
   const monthTx = getMonthTransactions(transactions);
   const todayTx = getTodayTransactions(transactions);
