@@ -22,12 +22,13 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ username, onLogout }) =
     budgetAlertsPerCategory: {},
   });
 
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(() => {
+  const fetchData = async () => {
     const s = await getSettings();
     setSettings(s);
-  }, []);
-
-  useFocusEffect(loadData);
+  };
+  fetchData();
+}, []);
 
   const updateSetting = async (key: keyof AppSettings, value: any) => {
     const updated = { ...settings, [key]: value };

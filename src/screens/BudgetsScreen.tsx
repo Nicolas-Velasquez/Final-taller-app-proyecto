@@ -19,13 +19,14 @@ const BudgetsScreen = () => {
   const [category, setCategory] = useState('Alimentación');
   const [limit, setLimit] = useState('');
 
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(() => {
+  const fetchData = async () => {
     const [b, t] = await Promise.all([getBudgets(), getTransactions()]);
     setBudgets(b);
     setTransactions(t);
-  }, []);
-
-  useFocusEffect(loadData);
+  };
+  fetchData();
+}, []);
 
   const totalLimit = budgets.reduce((s, b) => s + b.limit, 0);
   const totalSpent = budgets.reduce((s, b) => s + getSpentByCategory(transactions, b.category), 0);
